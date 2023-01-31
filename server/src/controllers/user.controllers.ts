@@ -23,7 +23,7 @@ export class UserController {
         }
       })
 
-      if(CheckedEmail){
+      if (CheckedEmail) {
         return res.status(400).json({
           status: "error",
           message: "Este email já está sendo usado"
@@ -64,7 +64,7 @@ export class UserController {
       })
 
       const { id } = req.params
-      const { name, email, oldPassword , newPassword, avatar } = UserProps.parse(req.body)
+      const { name, email, oldPassword, newPassword, avatar } = UserProps.parse(req.body)
 
       const user = await prisma.users.findUnique({
         where: {
@@ -72,15 +72,15 @@ export class UserController {
         }
       })
 
-      if(newPassword && !oldPassword){
+      if (newPassword && !oldPassword) {
         return res.status(400).json({
           status: "Error",
           message: "Você precisa digitar a senha antiga"
         })
-      } else if(newPassword && oldPassword){
+      } else if (newPassword && oldPassword) {
         const comparePassword = await compare(oldPassword!, user!.password)
 
-        if(!comparePassword){
+        if (!comparePassword) {
           return res.status(400).json({
             status: "Error",
             message: "Sua senha antiga está errada"
