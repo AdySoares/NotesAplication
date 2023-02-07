@@ -6,7 +6,10 @@ import { Container, Content, Logo, Menu, NewNote, Search } from "./style";
 import { Section } from '../../components/Section';
 import { Notes } from '../../components/Notes'
 
-export function Details(){
+export function Home(){
+
+  const tagsList = [{title: 'node'}, { title: 'express'}]
+
   return(
     <Container>
       <Logo>
@@ -34,7 +37,7 @@ export function Details(){
 
       <Content>
         <Section title='Minhas notas'/>
-        <Notes title='Node' tags={[{title: 'node'}, { title: 'express'}]}/>
+        <Notes title='Node' tags={tagsList}/>
       </Content>
     </Container>
   )

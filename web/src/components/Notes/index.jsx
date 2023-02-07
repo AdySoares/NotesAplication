@@ -8,7 +8,7 @@ export function Notes({ title, tags }){
 
       <div>
         {
-          tags.map(tag => <Tags title={tag.title}/>)
+          tags.map((tag, i) => <Tags key={i} title={tag.title}/>)
         }
       </div>
     </Container>
