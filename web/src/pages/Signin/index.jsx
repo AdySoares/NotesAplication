@@ -1,14 +1,15 @@
 import { FaRegEnvelope } from 'react-icons/fa'
-import { FiLock } from 'react-icons/fi'
+import { FiLock, FiUser } from 'react-icons/fi'
 import { Input } from "../../components/Input";
 import { BackgroundImg, Container, Form, Frame } from "./style";
 import { Button } from '../../components/Button';
 
-export function Login() {
+export function Signin() {
   return (
     <Container>
-      <Form>
+      <BackgroundImg />
 
+      <Form>
         <fieldset>
           <legend>Notes Tracker</legend>
           <p>Aplicação para salvar e gerenciar seus links uteis</p>
@@ -16,20 +17,20 @@ export function Login() {
 
           <Frame>
             <div>
+              <Input type='text' placeholder='Nome' icon={FiUser} />
               <Input type='email' placeholder='E-mail' icon={FaRegEnvelope} />
               <Input type='password' placeholder='Senha' icon={FiLock} />
             </div>
             
-            <Button title='Entrar'/>
+            <Button title='cadastrar'/>
           </Frame>
 
-          <a href="#">Criar Conta</a>
+          <a href="#">Voltar para o login</a>
 
         </fieldset>
 
       </Form>
 
-      <BackgroundImg />
     </Container>
   )
 }
