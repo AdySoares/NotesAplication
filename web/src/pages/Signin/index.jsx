@@ -2,6 +2,7 @@ import { FaRegEnvelope } from 'react-icons/fa'
 import { FiLock, FiUser } from 'react-icons/fi'
 import { Input } from "../../components/Input";
 import { BackgroundImg, Container, Form, Frame } from "./style";
+import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button';
 
 export function Signin() {
@@ -25,7 +26,7 @@ export function Signin() {
             <Button title='cadastrar'/>
           </Frame>
 
-          <a href="#">Voltar para o login</a>
+          <Link to='/'>Voltar para o login</Link>
 
         </fieldset>
 

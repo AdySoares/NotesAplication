@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const link = 'https://github.com/AdySoares.png'
@@ -18,19 +19,7 @@ export const Container = styled.div`
 
     z-index: -1;
 
-    > button{
-      
-      width: 5rem;
-      height: 5rem;
-
-      position: absolute;
-      left: 5rem;
-      top: 4.7rem;
-      
-      > svg {
-        color: ${({theme }) => theme.COLORS.GRAY_300};
-      }
-    }
+    
   }
 `;
 
@@ -53,7 +42,7 @@ export const Forms = styled.form`
   }
 `;
 
-export const User = styled.div`
+export const Avatar = styled.div`
 
   width: 18.6rem;
   height: 18.6rem;
@@ -93,4 +82,21 @@ export const User = styled.div`
       display: none;
     }
   }
+`;
+
+export const GoBack = styled(Link)`
+       width: 5rem;
+      height: 5rem;
+
+      position: absolute;
+      left: 5rem;
+      top: 4.7rem;
+      
+      z-index: 18;
+      display: grid;
+      place-items: center;
+
+      > svg {
+        color: ${({theme }) => theme.COLORS.GRAY_300};
+      }
 `

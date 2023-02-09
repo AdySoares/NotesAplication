@@ -4,6 +4,7 @@ import { Input } from '../../components/Input';
 import { Section } from '../../components/Section';
 import { Button } from '../../components/Button';
 import { InputWrapper } from "../../components/InputWrapper";
+import { Link } from "react-router-dom";
 
 export function New(){
   return(
@@ -12,7 +13,7 @@ export function New(){
       <Content>
         <div>
           <h1>Criar nota</h1>
-          <a href="#">Voltar</a>
+          <Link to='/'>Voltar</Link>
         </div>
         <Forms>
           <Input type='text' placeholder='Título'/>

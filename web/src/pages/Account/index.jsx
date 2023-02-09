@@ -1,27 +1,29 @@
 import { BiArrowBack } from 'react-icons/bi';
 import { FaRegEnvelope } from 'react-icons/fa';
 import { FiCamera, FiLock, FiUser } from 'react-icons/fi';
-import { Container, Forms, User } from "./style";
+import { Container, Forms, Avatar, GoBack } from "./style";
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 export function Account() {
   return (
     <Container>
       <div>
-        <button type='button'>
-          <BiArrowBack size={20} />
-        </button>
       </div>
 
+      <GoBack to='/'>
+         <BiArrowBack size={20} />
+      </GoBack>
+
       <Forms>
-        <User>
+        <Avatar>
           <img src="https://github.com/AdySoares.png" alt="Imagem do usuário" />
           <label form='InputFile'>
             <FiCamera size={20}/>
             <input type='file' id='InputFile'/>
           </label>
-        </User>
+        </Avatar>
         <div className='InputsArea'>
           <Input type='text' placeholder='Nome' icon={FiUser} />
           <Input type='email' placeholder='E-mail' icon={FaRegEnvelope} />

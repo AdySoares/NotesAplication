@@ -3,7 +3,7 @@ import { Container } from "./style";
 
 export function Notes({ title, tags }){
   return(
-    <Container>
+    <Container to='/details/1'>
       <p>{title}</p>
 
       <div>
@@ -14,12 +14,3 @@ export function Notes({ title, tags }){
     </Container>
   )
 }
-
-// "tags":[
-//   {
-//     "title": "fastifay"
-//   },
-//   {
-//     "title": "express"
-//   }
-// ],

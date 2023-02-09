@@ -3,6 +3,7 @@ import { FiLock } from 'react-icons/fi'
 import { Input } from "../../components/Input";
 import { BackgroundImg, Container, Form, Frame } from "./style";
 import { Button } from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 export function Login() {
   return (
@@ -23,7 +24,7 @@ export function Login() {
             <Button title='Entrar'/>
           </Frame>
 
-          <a href="#">Criar Conta</a>
+          <Link to='/register'>Criar Conta</Link>
 
         </fieldset>
 

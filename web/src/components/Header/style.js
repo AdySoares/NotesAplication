@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -11,8 +12,14 @@ export const Container = styled.div`
 
   border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_700};
 
+  > button {
+    color: ${({ theme }) => theme.COLORS.GRAY_100};
+  }
+`;
 
-  >div {
+export const User = styled(Link)`
+
+      color: ${({theme}) => theme.COLORS.WHITE};
      display: flex;
      align-items: center;
      gap: .9rem;
@@ -29,8 +36,4 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.COLORS.GRAY_100};
       }
      }
-  }
-  > button {
-    color: ${({ theme }) => theme.COLORS.GRAY_100};
-  }
 `

@@ -26,7 +26,7 @@ export function Home(){
         </ul>
       </Menu>
 
-      <NewNote>
+      <NewNote to='/new'>
         <FiPlus size={20}/>
         <p>Criar nota</p>
       </NewNote>

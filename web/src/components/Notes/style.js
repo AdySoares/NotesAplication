@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const Container = styled.div`
+export const Container = styled(Link)`
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
   font-weight: 700;
@@ -15,7 +16,7 @@ export const Container = styled.div`
   gap: 2.4rem;
   border-radius: 1rem;
 
-  cursor: pointer;
+  color: ${({ theme }) => theme.COLORS.WHITE};
 
   transition: all 200ms;
 

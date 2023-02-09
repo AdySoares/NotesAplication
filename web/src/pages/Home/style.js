@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: grid;
@@ -54,7 +55,7 @@ export const Menu = styled.div`
 
 `;
 
-export const NewNote = styled.button`
+export const NewNote = styled(Link)`
 
   grid-area: new;
   display: flex;
