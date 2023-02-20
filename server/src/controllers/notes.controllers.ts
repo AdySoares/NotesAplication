@@ -64,34 +64,65 @@ export class NotesControllers {
 
       const { usersId } = UserProps.parse(req.params)
 
-      const { title } = SearchProps.parse(req.query)
+      const { title, tags } = SearchProps.parse(req.query)
 
-      const result = await prisma.notes.findMany({
-        where: {
-          title: {
-            contains: `${title}`
-          },
-          usersId: usersId
-        },
-        select: {
-          id: true,
-          title: true,
-          description: true,
-          tags: {
-            select: {
-              title: true,
+      let result
+      
+      if (tags) {
+        result = await prisma.notes.findMany({
+          where: {
+            tags: {
+              some: {
+                title: tags
+              }
             },
+            usersId: usersId
           },
-          links: {
-            select: {
-              url: true
-            }
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            tags: {
+              select: {
+                title: true,
+              },
+            },
+            links: {
+              select: {
+                url: true
+              }
+            },
+            createdAt: true,
+  
+          }
+        })
+      }else{
+        result = await prisma.notes.findMany({
+          where: {
+            title: {
+              contains: `${title}`
+            },
+            usersId: usersId
           },
-          createdAt: true,
-
-        }
-      })
-
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            tags: {
+              select: {
+                title: true,
+              },
+            },
+            links: {
+              select: {
+                url: true
+              }
+            },
+            createdAt: true,
+  
+          }
+        })
+      }
 
 
       return res.status(200).json(result)
