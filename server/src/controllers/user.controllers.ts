@@ -1,13 +1,16 @@
 import { PrismaClient } from '@prisma/client'
 import { hash, compare } from 'bcrypt'
-import { Request, Response } from 'express'
+import { Request, Response, response } from 'express'
 import { z } from 'zod'
+import { DiskStorage } from '../providers/diskStorage'
+
+const diskStorage = new DiskStorage
 
 const prisma = new PrismaClient()
 
 export class UserController {
 
-  async create(req: Request, res: Response) {
+  async create(req: Request , res: Response) {
     try {
       const UserProps = z.object({
         name: z.string(),
@@ -53,7 +56,7 @@ export class UserController {
     }
   }
 
-  async update(req: Request, res: Response) {
+  async update(req: Request , res: Response) {
     try {
       const UserProps = z.object({
         name: z.string().nullish(),
@@ -63,7 +66,7 @@ export class UserController {
         avatar: z.string().nullish()
       })
 
-      const { id } = req.params
+      const { id } = req.user
       const { name, email, oldPassword, newPassword, avatar } = UserProps.parse(req.body)
 
       const user = await prisma.users.findUnique({
@@ -120,6 +123,42 @@ export class UserController {
         message: "Ops algo deu errado!!!"
       })
     }
+  }
+
+  async avatarUpdate(req: Request, res: Response){
+    console.log('passou 1')
+    const file = req.file?.filename
+    const { id } = req.user
+
+    const user = await prisma.users.findUnique({
+      where: {
+        id
+      }
+    })
+
+    console.log('passou 2')
+
+    if(user?.avatar){
+      diskStorage.deleteFile(user?.avatar)
+      console.log('passou entrou no if')
+    }
+    
+    await prisma.users.update({
+      where:{
+        id
+      },
+      data: {
+        avatar: file
+      }
+    })
+
+    console.log('passou 3')
+
+    
+    return res.status(200).json({
+     file: file
+    })
+
   }
 
 }
