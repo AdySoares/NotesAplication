@@ -7,11 +7,11 @@ const prisma = new PrismaClient()
 export class TagsControllers{
   async show(req: Request, res: Response) {
     try {
-      const {usersId} = req.params
+      const userId = req.user.id
   
       const tags = await prisma.tags.findMany({
         where: {
-          usersId: usersId
+          usersId: userId
         }
       })
 

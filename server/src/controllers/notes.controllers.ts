@@ -14,7 +14,7 @@ export class NotesControllers {
         links: z.array(z.string())
       })
 
-      const { usersId } = req.params
+      const  usersId  = req.user.id
       const { title, description, tags, links } = NotesProps.parse(req.body)
 
       await prisma.notes.create({
@@ -58,11 +58,7 @@ export class NotesControllers {
         tags: z.string().nullish()
       })
 
-      const UserProps = z.object({
-        usersId: z.string()
-      })
-
-      const { usersId } = UserProps.parse(req.params)
+      const  usersId = req.user.id
 
       const { title, tags } = SearchProps.parse(req.query)
 
@@ -87,11 +83,6 @@ export class NotesControllers {
                 title: true,
               },
             },
-            links: {
-              select: {
-                url: true
-              }
-            },
             createdAt: true,
   
           }
@@ -112,11 +103,6 @@ export class NotesControllers {
               select: {
                 title: true,
               },
-            },
-            links: {
-              select: {
-                url: true
-              }
             },
             createdAt: true,
   
@@ -141,11 +127,11 @@ export class NotesControllers {
     try {
 
       const NotesProps = z.object({
-        usersId: z.string(),
         noteId: z.string()
       })
 
-      const { usersId, noteId } = NotesProps.parse(req.params)
+      const usersId = req.user.id
+      const { noteId } = NotesProps.parse(req.params)
 
       const note = await prisma.notes.findFirst({
         where:{
